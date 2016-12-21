@@ -64,4 +64,21 @@ void rewriteFile() {
             ++i;
         }
 
+        //if we find the user we are looking for, we update its information
+        if (array[0] == uniqueUserID) {
+            std::stringstream value;
+            values << uniqueUserID << ',' << userRole << ',' << std::setprecision(2) << std::fixed << userCheqBal << ',' << std::setprecision(2) << std::fixed << userSavBal << ',' << clientName;
+            std:string input;
+            input = values.str();
+            fileOut << input << "\n";
+        }
+        else {
+            std::string secondInput;
+            secondInput = array[0] + "," + array[1] + "," + array[2] + "," + array[3] + "," + array[4];
+            fileOut << secondInput << "\n";
+            fileOut << secondInput << "\n";
+            fileOut << secondInput << "\n";
+        }
+
+    }
 }
