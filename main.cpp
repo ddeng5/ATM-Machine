@@ -42,3 +42,26 @@ std::string decrypt(std::string code) {
 
     return str;
 }
+
+
+//updates our database with the newest data
+void rewriteFile() {
+    std::ifstream fileIn("users.txt");
+    std::ofstream fileOut("temp.txt");
+    std::string line;
+
+    //get each line in the text file and separate each line's contents by the comma and put them in an array
+    while (std::getline(fileIn, line)) {
+        std::string *array = new std::string[6];
+        int i=0;
+        std::stringstream iss;
+
+        iss << line;
+
+        //separate the userid, role, chequings account and savings account balances for each user
+        while (std::getline(iss, line, ',')) {
+            array[i] = line;
+            ++i;
+        }
+
+}
