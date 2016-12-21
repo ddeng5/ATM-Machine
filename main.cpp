@@ -7,7 +7,7 @@
 #include <ctime>
 #include "accounts.h"
 
-
+//global variables for key logged in user information
 std::string uniqueUserID;
 double userCheqBal;
 double userSavBal;
@@ -16,15 +16,16 @@ double totalCheqBank = 0;
 double totalSavBank = 0;
 std::string clientName;
 int numberOfUsers;
-
+//when recording = 0, the program is not recording
 int recording;
 
-
+//function will decrypt the username and password into a uniqueID
 std::string decrypt(std::string code) {
     long randomizer = 100;
 
 
-
+    // Converts each character of string into an integer
+    // and adds them together
     for (int i = 0; i < code.size(); i++)
     {
         randomizer += code[i];
