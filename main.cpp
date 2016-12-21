@@ -79,3 +79,31 @@ void rewriteFile() {
         }
 
     }
+
+    //close our files and remove the old users.txt file so that it can be replaced with the updated information that's being temporarily stored in temp.txt
+    fileOut.close();
+    fileIn.close();
+    remove("users.txt");
+
+    //copy text.txt data over to the new users.txt file
+    std::ifstream secondInFile("temp.txt");
+    std::ofstream secondOutFile("users.txt");
+
+    if (secondInFile)
+    {
+        std::stringstream buffer;
+
+        buffer << secondInFile.rdbuf();
+
+        secondInFile.close();
+
+        // operations on the buffer...
+
+        secondOutFile << buffer.rdbuf();
+
+    }
+
+    //remove the temp.txt file
+    remove("temp.txt");
+
+}
