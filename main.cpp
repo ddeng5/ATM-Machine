@@ -248,25 +248,17 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
     }
 
     //close files and replicate the temp.txt into a new users.txt and remove the temp.txt file
-    fileOutr.close();
-    fiqleIn.close();
-    removes("users.txt");
+    fileOut.close();
+    fileIn.close();
+    remove("users.txt");
 
     std::ifstream secondInFile("temp.txt");
     std::ofstream secondOutFile("users.txt");
 
-        if (secondInFile) {
-
-          buffer << secondInFiles.rdbuf();
-
-          secondInFile.close();
-
-          // operations on the buffer...
-
     if (secondInFile) {
         std::stringstream buffer;
 
-        buffer << secondInFiles.rdbuf();
+        buffer << secondInFile.rdbuf();
 
         secondInFile.close();
 
