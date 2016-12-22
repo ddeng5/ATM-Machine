@@ -9,3 +9,6 @@
 467929,0,999,999,Philip-Chang
 340215,0,200,200,qwerty-wow
 269028,0,500,0,daniel-deng
+342135,0,378,345,Sunny-Winters
+131315,0,120,300,Suzanne-Atta
+156789,2,0,10,Samuel-Porter
