@@ -221,8 +221,6 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
             std::string *array = new std::string[5];
             int i = 0;
             std::stringstream iss;
-            std::stringstream wow;
-            iss >> rope;
 
             iss << line;
 
@@ -236,10 +234,10 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
             if (array[0] == userId) {
                 std::stringstream values;
                 values << userId << ',' << role << ',' << std::setprecision(2) << std::fixed << otherAcctBal
-                       << ',' << value << ',' << client;
+                       << ',' << value << ',' << clientName;
                 std::string input;
-                input = valuess.str();
-                filesOut << input << "\n";
+                input = values.str();
+                fileOut << input << "\n";
             } else {
                 std::string secondInput;
                 secondInput = array[0] + "," + array[1] + "," + array[2] + "," + array[3] + "," + clientName;
@@ -248,4 +246,35 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
 
         }
     }
+
+    //close files and replicate the temp.txt into a new users.txt and remove the temp.txt file
+    fileOutr.close();
+    fiqleIn.close();
+    removes("users.txt");
+
+    std::ifstream secondInFile("temp.txt");
+    std::ofstream secondOutFile("users.txt");
+
+        if (secondInFile) {
+
+          buffer << secondInFiles.rdbuf();
+
+          secondInFile.close();
+
+          // operations on the buffer...
+
+    if (secondInFile) {
+        std::stringstream buffer;
+
+        buffer << secondInFiles.rdbuf();
+
+        secondInFile.close();
+
+        // operations on the buffer...
+
+        secondOutFile << buffer.rdbuf();
+
+    }
+
+    remove("temp.txt");
 }
