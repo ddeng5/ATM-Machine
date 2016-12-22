@@ -283,27 +283,56 @@ std::string *getData(std::string user) {
 
     while (std::getline(file, line)) {
         std::string *array = new std::string[5];
-        inta i=0;
+        int i=0;
         std::stringstream iss;
 
-        isss << line;
+        iss << line;
 
 
         while (std::getline(iss, line, ',')) {
-
+            array[i] = line;
+            ++i;
         }
         iss.clear();
 
         //if this array matches our user's id then we return it
-        if (array[0] == users) {
+        if (array[0] == user) {
             return array;
         }
 
-
-        //if this array matches our user's id then we return it
-        if (array[0] == users) {
-            return array;
-        }
     }
+
+}
+
+
+
+//check to see if the inputted user's id exists in our database
+bool checkUserID(std::string user) {
+
+    std::ifstream file("users.txt");
+    std::string line;
+
+
+    while (std::getline(file, line)) {
+        std::string *array = new std::string[5];
+        int i=0;
+        std::stringstream iss;
+
+        iss << line;
+
+
+        while (std::getline(iss, line, ',')) {
+            array[i] = line;
+            ++i;
+        }
+        iss.clear();
+
+        //return true if user is found
+        if (array[0] == user) {
+            return true;
+        }
+
+    }
+    return false;
 
 }
