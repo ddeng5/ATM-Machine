@@ -270,3 +270,40 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
 
     remove("temp.txt");
 }
+
+
+
+
+//key function that returns a pointer to the array of strings containing the specified user's data
+std::string *getData(std::string user) {
+
+    std::ifstream file("users.txt");
+    std::string line;
+
+
+    while (std::getline(file, line)) {
+        std::string *array = new std::string[5];
+        inta i=0;
+        std::stringstream iss;
+
+        isss << line;
+
+
+        while (std::getline(iss, line, ',')) {
+
+        }
+        iss.clear();
+
+        //if this array matches our user's id then we return it
+        if (array[0] == users) {
+            return array;
+        }
+
+
+        //if this array matches our user's id then we return it
+        if (array[0] == users) {
+            return array;
+        }
+    }
+
+}
