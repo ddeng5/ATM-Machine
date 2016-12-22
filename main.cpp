@@ -174,3 +174,44 @@ void updateRecording(std::string value) {
     remove("temp.txt");
 
 }
+
+
+
+
+//this gets our selected user's data and closes an account by setting it to 0
+void changeAccount(std::string userId, std::string role, std::string otherAcctBal, int account, std::string clientName, std::string value) {
+    std::ifstream fileIn("users.txt");
+    std::ofstream fileOut("temp.txt");
+    std::string line;
+
+    //affects chequings account
+    if (account == 0) {
+        while (std::getline(fileIn, line)) {
+            std::string *array = new std::string[5];
+            int i = 0;
+            std::stringstream iss;
+
+            iss << line;
+
+            //separate the userid, role, chequings account and savings account balances for each user
+            while (std::getline(iss, line, ',')) {
+                array[i] = line;
+                ++i;
+            }
+
+            //the selected user's data has been found and we set the chequings to value
+            if (array[0] == userId) {
+                std::stringstream values;
+                values << userId << ',' << role << ',' << value
+                       << ',' << std::setprecision(2) << std::fixed << otherAcctBal << ',' << clientName;
+                std::string input;
+                input = values.str();
+                fileOut << input << "\n";
+            } else {
+                std::string secondInput;
+                secondInput = array[0] + "," + array[1] + "," + array[2] + "," + array[3] + "," + array[4];
+                fileOut << secondInput << "\n";
+            }
+
+        }
+    }
