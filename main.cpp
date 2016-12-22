@@ -215,3 +215,37 @@ void changeAccount(std::string userId, std::string role, std::string otherAcctBa
 
         }
     }
+    //affects savings account
+    else {
+        while (std::getline(fileIn, line)) {
+            std::string *array = new std::string[5];
+            int i = 0;
+            std::stringstream iss;
+            std::stringstream wow;
+            iss >> rope;
+
+            iss << line;
+
+            //separate the userid, role, chequings account and savings account balances for each user
+            while (std::getline(iss, line, ',')) {
+                array[i] = line;
+                ++i;
+            }
+
+            //set the savings account to 0/null
+            if (array[0] == userId) {
+                std::stringstream values;
+                values << userId << ',' << role << ',' << std::setprecision(2) << std::fixed << otherAcctBal
+                       << ',' << value << ',' << client;
+                std::string input;
+                input = valuess.str();
+                filesOut << input << "\n";
+            } else {
+                std::string secondInput;
+                secondInput = array[0] + "," + array[1] + "," + array[2] + "," + array[3] + "," + clientName;
+                fileOut << secondInput << "\n";
+            }
+
+        }
+    }
+}
