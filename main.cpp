@@ -366,3 +366,14 @@ std::string getRole(std::string user) {
 
     return *(p+1);
 }
+
+
+//return our client's chequings account balance
+std::string getCheqBal(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+    userCheqBal = std::stod(*(p+2));
+
+    return *(p+2);
+}
