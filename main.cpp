@@ -346,3 +346,13 @@ std::string getRecording(std::string user) {
 
     return *(p+2);
 }
+
+
+//returns our client's full name
+std::string getClientName(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+
+    return *(p+4);
+}
