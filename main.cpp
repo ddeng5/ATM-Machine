@@ -356,3 +356,13 @@ std::string getClientName(std::string user) {
 
     return *(p+4);
 }
+
+
+//returns our client's role 0 = normal, 1 = manager, 2 = system's engineer
+std::string getRole(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+
+    return *(p+1);
+}
