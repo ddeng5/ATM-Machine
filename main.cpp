@@ -377,3 +377,14 @@ std::string getCheqBal(std::string user) {
 
     return *(p+2);
 }
+
+
+//return our client's savings account balance
+std::string getSavBal(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+
+    userSavBal = std::stod(*(p+3));
+    return *(p+3);
+}
