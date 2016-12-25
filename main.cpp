@@ -388,3 +388,12 @@ std::string getSavBal(std::string user) {
     userSavBal = std::stod(*(p+3));
     return *(p+3);
 }
+
+//returns our client's full name
+std::string getOverdraft(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+
+    return *(p+5);
+}
