@@ -336,3 +336,13 @@ bool checkUserID(std::string user) {
     return false;
 
 }
+
+
+//returns our client's data
+std::string getRecording(std::string user) {
+    std::string *p;
+
+    p = getData(user);
+
+    return *(p+2);
+}
