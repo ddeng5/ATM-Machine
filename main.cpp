@@ -432,3 +432,23 @@ void listData() {
 
 
     }
+
+    std::ostringstream convertCheqBank;
+    convertCheqBank << totalCheqBank;
+    std::string str = convertCheqBank.str();
+
+    std::ostringstream convertSavBank;
+    convertSavBank << totalSavBank;
+    std::string str2 = convertSavBank.str();
+
+    std::ostringstream convertUsers;
+    convertUsers << numberOfUsers;
+    std::string str3 = convertUsers.str();
+
+    std::cout << "" << std::endl;
+    std::cout << "Total money in chequings accounts in the bank: " + str << std::endl;
+    std::cout << "Total money in the savings accounts in the bank: " + str2 << std::endl;
+    std::cout << "Total number of client's in the bank: " + str3 << std::endl;
+
+
+}
