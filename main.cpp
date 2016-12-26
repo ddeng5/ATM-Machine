@@ -409,8 +409,26 @@ void listData() {
     numberOfUsers = 0;
 
     while (std::getline(file, line)) {
-        std::string *array = new std::string[4];
-        int i=1;
+        std::string *array = new std::string[5];
+        int i=0;
         std::stringstream iss;
 
         iss << line;
+
+
+        while (std::getline(iss, line, ',')) {
+            array[i] = line;
+            ++i;
+        }
+
+        std::cout << "Userid: " + array[0] + '\t' + " Chequings Balance: " + array[2] + '\t' + " Savings Balance: " + array[3] + '\t' + " Client: " + array[4] << std::endl;
+
+        totalCheqBank = totalCheqBank + std::stod(array[2]);
+        totalSavBank = totalSavBank + std::stod(array[3]);
+        ++numberOfUsers;
+
+
+        iss.clear();
+
+
+    }
