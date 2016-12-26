@@ -389,6 +389,7 @@ std::string getSavBal(std::string user) {
     return *(p+3);
 }
 
+
 //returns our client's full name
 std::string getOverdraft(std::string user) {
     std::string *p;
@@ -397,3 +398,19 @@ std::string getOverdraft(std::string user) {
 
     return *(p+5);
 }
+
+
+
+//function for the manager to see all accounts in our database and their details
+void listData() {
+    std::ifstream file("users.txt");
+    std::string line;
+    //keep track of the number of users in our database
+    numberOfUsers = 0;
+
+    while (std::getline(file, line)) {
+        std::string *array = new std::string[4];
+        int i=1;
+        std::stringstream iss;
+
+        iss << line;
