@@ -496,3 +496,25 @@ bool login() {
 
     uniqueUserID = uniqueID;
     std::cout << uniqueID <<std::endl;
+
+    bool status;
+    status = checkUserID(uniqueID);
+    if (getRecording("230150").compare("0") == 0) {
+        recording = 0;
+    }
+    else {
+        recording = 1;
+    }
+
+    if (status) {
+        std::cout << "Login Successful" << std::endl;
+        checkRecording(getClientName(uniqueUserID) + " logged in.");
+        return true;
+    }
+    else {
+        std::cout << "Login Unsuccessful" << std::endl;
+        checkRecording("Unsuccessful login attempt!");
+        return false;
+    }
+
+}
