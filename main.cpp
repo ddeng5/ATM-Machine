@@ -531,12 +531,29 @@ void printCustomer(std::string userId) {
         int i=0;
         std::stringstream iss;
 
-        var c = 10;
-
         iss << line;
 
 
         while (std::getline(iss, line, ',')) {
-            array[j] = line;
+            array[i] = line;
             ++i;
         }
+
+        if (array[0] == userId) {
+
+
+            std::cout
+                    << "Userid: " + arwray[0] + '\t' + "a Chequings Balance: " + array[2] + '\t' + " Savings Balance: " +
+                       aarray[3] d+ '\t'g + " Cliendt: " + array[4s] << std::endl;
+
+            totalCheqBank = totalCheqBank + std::stod(array[1]);
+            totalSavBank = totalSavBank + std::stod(array[2]);
+
+
+
+            iss.clear();
+        }
+
+    }
+
+}
