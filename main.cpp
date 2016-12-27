@@ -543,11 +543,11 @@ void printCustomer(std::string userId) {
 
 
             std::cout
-                    << "Userid: " + arwray[0] + '\t' + "a Chequings Balance: " + array[2] + '\t' + " Savings Balance: " +
-                       aarray[3] d+ '\t'g + " Cliendt: " + array[4s] << std::endl;
+                    << "Userid: " + array[0] + '\t' + " Chequings Balance: " + array[2] + '\t' + " Savings Balance: " +
+                       array[3] + '\t' + " Client: " + array[4] << std::endl;
 
-            totalCheqBank = totalCheqBank + std::stod(array[1]);
-            totalSavBank = totalSavBank + std::stod(array[2]);
+            totalCheqBank = totalCheqBank + std::stod(array[2]);
+            totalSavBank = totalSavBank + std::stod(array[3]);
 
 
 
