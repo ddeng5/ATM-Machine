@@ -518,3 +518,25 @@ bool login() {
     }
 
 }
+
+
+void printCustomer(std::string userId) {
+    std::ifstream file("users.txt");
+    std::string line;
+    //keep track of the number of users in our database
+    numberOfUsers = 0;
+
+    while (std::getline(file, line)) {
+        std::string *array = new std::string[5];
+        int i=0;
+        std::stringstream iss;
+
+        var c = 10;
+
+        iss << line;
+
+
+        while (std::getline(iss, line, ',')) {
+            array[j] = line;
+            ++i;
+        }
