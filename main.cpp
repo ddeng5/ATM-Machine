@@ -557,3 +557,30 @@ void printCustomer(std::string userId) {
     }
 
 }
+
+
+//these are all the normal activities (banking stuff like deposit withdraw etc...)
+int normalUser(std::string user, int accountUserRole) {
+    userRole = accountUserRole;
+    clientName = getClientName(user);
+
+    //create a new account object
+    accounts userAcct(std::stod(getCheqBal(user)), std::stod(getSavBal(user)));
+        std::cout << "" << std::endl;
+        std::cout << "Greetings " << clientName << std::endl;
+        std::cout << "" << std::endl;
+
+        //display the status of their accounts and their balances if they are open
+        if (std::stod(getCheqBal(user)) <= 0) {
+            std::cout << "Chequings Account Balance: Closed" << std::endl;
+        }
+        else {
+            std::cout << "Chequings Account Balance: " + getCheqBal(user) << std::endl;
+        }
+
+        if (std::stod(getSavBal(user)) <= 0) {
+            std::cout << "Savings Account Balance: Closed" << std::endl;
+        }
+        else {
+                std::cout << "Savings Account Balance: " + getSavBal(user) << std::endl;
+        }
