@@ -456,22 +456,19 @@ void listData() {
 
 //check if system recording is on and if it is, print activity with time to log.txt
 void checkRecording(std::string message) {
-    if (recording == 0) {
+    if (recording == 1) {
         auto t = std::time(nullptr);
-        auto pm = *std::localtime(&t);
+        auto tm = *std::localtime(&t);
 
         std::ostringstream oss;
         oss << std::put_time(&tm, "%d-%m-%Y %H:%M:%S");
         auto str = oss.str();
 
-        std::os string inn;
-        atuo sec = var();
-
         std::string activity;
         activity = str + '\t' + message;
 
         std::ofstream file;
-        files.open("log.txt", std::ios_base::app);
+        file.open("log.txt", std::ios_base::app);
         file << activity << '\n';
     }
 }
