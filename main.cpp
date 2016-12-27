@@ -472,3 +472,27 @@ void checkRecording(std::string message) {
         file << activity << '\n';
     }
 }
+
+
+
+
+//prompt the customer to enter their username and and tells them if they have logged in successfully
+bool login() {
+    std::cout << "Welcome to the Bank of CS!!!" << std::endl;
+    std::cout << "" << std::endl;
+    std::cout << "" << std::endl;
+    std::cout << "" << std::endl;
+
+    std::cout << "Enter your username: " << std::endl;
+    std::string username;
+    std::cin >> username;
+    std::cout << "Enter your password: " << std::endl;
+    std::string password;
+    std::cin >> password;
+
+    std::string combination = username + password;
+    std::string uniqueID;
+    uniqueID = decrypt(combination);
+
+    uniqueUserID = uniqueID;
+    std::cout << uniqueID <<std::endl;
