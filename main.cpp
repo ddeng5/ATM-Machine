@@ -548,7 +548,7 @@ void printCustomer(std::string userId) {
 
             totalCheqBank = totalCheqBank + std::stod(array[2]);
             totalSavBank = totalSavBank + std::stod(array[3]);
-
+            ++numberOfUsers;
 
 
             iss.clear();
