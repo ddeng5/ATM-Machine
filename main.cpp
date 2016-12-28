@@ -688,3 +688,37 @@ int normalUser(std::string user, int accountUserRole) {
                     return 0;
                 }
             }
+            //withdraw from savings
+            else if (account == 1) {
+                //check if account is closed
+                if (std::stod(getSavBal(user)) == 0) {
+                    std::cout << "Cannot withdraw from a closed account, contact your bank manager to open!" << std::endl;
+                    checkRecording(getClientName(user) +  " tried to withdraw from closed savings account.");
+                    return 0;
+                }
+                std::cout << "Enter amount to withdraw" << std::endl;
+                double withdrawAmt;
+                std::cin >> withdrawAmt;
+                //check for sufficient funds
+                if (userAcct.cashWithdrawal(userSavBal, withdrawAmt) < 0) {
+                    std::cout << "Insufficient Funds to withdraw from savings account." << std::endl;
+                    checkRecording(getClientName(user) +  " tried to withdraw from a savings account that had insufficient funds.");
+                    return 0;
+                }
+                else {
+                    double newTotal;
+                    newTotal = userAcct.cashWithdrawal(userSavBal, withdrawAmt);
+
+                    std::cout << "Withdraw Complete" << std::endl;
+                    std::ostringstream strs;
+                    strs << withdrawAmt;
+                    std::string str = strs.str();
+                    checkRecording(getClientName(user) +  " withdrew " + str + " from their savings account.");
+                    userSavBal = newTotal;
+                    rewriteFile();
+                    return 0;
+                }
+            } else {
+                normalUser(user, 0);
+            }
+        }
