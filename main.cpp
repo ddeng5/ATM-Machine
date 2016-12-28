@@ -601,3 +601,26 @@ int normalUser(std::string user, int accountUserRole) {
 
         int task;
         std::cin >> task;
+
+        //cash withdrawal function
+        if (task == 0) {
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+
+            //ask which account they would like to withdraw from
+            std::cout << "Which account would you like to withdraw from?" << std::endl;
+            std::cout << "0. Chequings Account" << std::endl;
+            std::cout << "1. Savings Account" << std::endl;
+            std::cout << "Press Any Other Number to Go Back" << std::endl;
+
+            int account;
+            std::cin >> account;
+
+            //guarantees that they enter a number only and will keep prompting them if incorrect
+            while(std::cin.fail()) {
+                std::cout << "Please Enter a Number Only: " << std::endl;
+                std::cin.clear();
+                std::cin.ignore(256,'\n');
+                std::cin >> account;
+            }
