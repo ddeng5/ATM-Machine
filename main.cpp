@@ -624,3 +624,67 @@ int normalUser(std::string user, int accountUserRole) {
                 std::cin.ignore(256,'\n');
                 std::cin >> account;
             }
+
+            //withdrawing from the chequings account
+            if (account == 0) {
+                //check to see if the account is closed
+                if (std::stod(getCheqBal(user)) == 0) {
+                    std::cout << "Cannot withdraw from a closed account, contact your bank manager to open!" << std::endl;
+                    checkRecording(getClientName(user) + " tried to withdraw from closed chequings account.");
+                    return 0;
+                }
+                //ask how much they would like to withdraw
+                std::cout << "Enter amount to withdraw" << std::endl;
+                double withdrawAmt;
+                std::cin >> withdrawAmt;
+
+                //check if there are sufficient funds in the chequings account
+                if (userAcct.cashWithdrawal(userCheqBal, withdrawAmt) < 0) {
+                    std::cout << "Insufficient funds to withdraw from chequings account." << std::endl;
+                    checkRecording(getClientName(user) + " tried to withdraw but did not have sufficient funds.");
+                    return 0;
+                }
+                else {
+                    double temp;
+                    temp = userAcct.cashWithdrawal(userCheqBal, withdrawAmt);
+                    //if withdrawing from a chequings account and the resulting balance will be less than $1000, warn user and tell them a $2 charge will incur if they agree
+                    if (temp < 1000) {
+                        std::cout << "You will be charged $2 if you proceed with this action because your chequings account will be <$1000. Would you like to proceed?" << std::endl;
+                        std::cout << "0. No" << std::endl;
+                        std::cout << "1. Yes" << std::endl;
+                        int pick;
+                        std::cin >> pick;
+
+                        //if the user doesn't agree to the charges then go back to the main menu
+                        if (pick == 0) {
+                            checkRecording(getClientName(user) + " denied extra charge to withdraw from chequings account.");
+                            return 0;
+                        }
+                            //if they agree go through with the transaction and charge $2
+                        else {
+                            double newTotal;
+                            newTotal = userAcct.cashWithdrawal(userCheqBal, withdrawAmt);
+                            newTotal = newTotal - 2;
+                            std::cout << "Withdraw Complete" << std::endl;
+                            std::ostringstream strs;
+                            strs << withdrawAmt;
+                            std::string str = strs.str();
+                            checkRecording(getClientName(user) + " withdrew " + str + " from chequings account with extra charge.");
+                            userCheqBal = newTotal;
+                            rewriteFile();
+                            return 0;
+                        }
+                    }
+                    double newTotal;
+                    newTotal = userAcct.cashWithdrawal(userCheqBal, withdrawAmt);
+                    //update balance and tell user their action is completed
+                    std::cout << "Withdraw Complete" << std::endl;
+                    std::ostringstream strs;
+                    strs << withdrawAmt;
+                    std::string str = strs.str();
+                    checkRecording(getClientName(user) + " withdrew " + str + " from chequings account.");
+                    userCheqBal = newTotal;
+                    rewriteFile();
+                    return 0;
+                }
+            }
