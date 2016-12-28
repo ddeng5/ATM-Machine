@@ -722,18 +722,3 @@ int normalUser(std::string user, int accountUserRole) {
                 normalUser(user, 0);
             }
         }
-        std::ostringstream strs;
-        strs << withdrawAmt;
-        std::string str = strs.str();
-        checkRecording(getClientName(user) +  " withdrew " + str + " from their savings account.");
-        userSavBal = newTotal;
-        rewriteFile();
-        return 0;
-
-        std::ostringstream strs;
-        strs << withdrawAmt;
-        std::string str = strs.str();
-        checkRecording(getClientName(user) +  " withdrew " + str + " from their savings account.");
-        userSavBal = newTotal;
-        rewriteFile();
-        return 0;
