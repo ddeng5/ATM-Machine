@@ -584,3 +584,20 @@ int normalUser(std::string user, int accountUserRole) {
         else {
                 std::cout << "Savings Account Balance: " + getSavBal(user) << std::endl;
         }
+
+        std::cout << "" << std::endl;
+        std::cout << "" << std::endl;
+
+        //main menu
+        std::cout << "0. Cash Withdrawal" << std::endl;
+        std::cout << "1. Deposit" << std::endl;
+        std::cout << "2. Transfer Between Accounts" << std::endl;
+        std::cout << "3. Exit/Logout" << std::endl;
+
+        std::cout << "" << std::endl;
+        std::cout << "" << std::endl;
+
+        std::cout << "Enter the number of the process you would like to complete today: " << std::endl;
+
+        int task;
+        std::cin >> task;
