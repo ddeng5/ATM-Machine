@@ -770,3 +770,31 @@ int normalUser(std::string user, int accountUserRole) {
                     return 0;
                 }
             }
+            //deposit into savings account
+            else if (account == 1) {
+                //check if account is closed
+                if (std::stod(getSavBal(user)) == 0) {
+                    std::cout << "Cannot deposit into a closed account, contact your bank manager to open!" << std::endl;
+                    return 0;
+                } else {
+                    std::cout << "Enter amount to deposit" << std::endl;
+                    double depositAmt;
+                    std::cin >> depositAmt;
+
+                    double newTotal;
+                    newTotal = userAcct.deposit(userSavBal, depositAmt);
+
+                    std::cout << "Deposit Complete" << std::endl;
+                    std::ostringstream strs;
+                    strs << depositAmt;
+                    std::string str = strs.str();
+                    checkRecording(getClientName(user) +  " deposited " + str + " into their savings account.");
+                    userSavBal = newTotal;
+                    rewriteFile();
+                    return 0;
+                }
+            }
+            else {
+                normalUser(user, 0);
+            }
+        }
