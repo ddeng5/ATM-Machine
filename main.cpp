@@ -722,3 +722,51 @@ int normalUser(std::string user, int accountUserRole) {
                 normalUser(user, 0);
             }
         }
+
+
+        //depositing function
+        else if (task == 1) {
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+
+            std::cout << "Which account would you like to deposit into?" << std::endl;
+            std::cout << "0. Chequings Account" << std::endl;
+            std::cout << "1. Savings Account" << std::endl;
+            std::cout << "Press Any Other Number to Go Back" << std::endl;
+
+            int account;
+            std::cin >> account;
+
+            while(std::cin.fail()) {
+                std::cout << "Please Enter a Number Only: " << std::endl;
+                std::cin.clear();
+                std::cin.ignore(256,'\n');
+                std::cin >> account;
+            }
+            //depositing into chequings account
+            if (account == 0) {
+                //check if account is closed
+                if (std::stod(getCheqBal(user)) == 0) {
+                    std::cout << "Cannot deposit into a closed account, contact your bank manager to open!" << std::endl;
+                    checkRecording(getClientName(user) +  " tried to deposit into a closed  chequings account.");
+                    return 0;
+                }
+                else {
+                    std::cout << "Enter amount to deposit" << std::endl;
+                    double depositAmt;
+                    std::cin >> depositAmt;
+
+                    double newTotal;
+                    newTotal = userAcct.deposit(userCheqBal, depositAmt);
+
+                    std::cout << "Deposit Complete" << std::endl;
+                    std::ostringstream strs;
+                    strs << depositAmt;
+                    std::string str = strs.str();
+                    checkRecording(getClientName(user) +  " deposited " + str + " into their chequings account.");
+                    userCheqBal = newTotal;
+                    rewriteFile();
+                    return 0;
+                }
+            }
