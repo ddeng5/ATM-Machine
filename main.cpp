@@ -828,3 +828,24 @@ int normalUser(std::string user, int accountUserRole) {
 
             int toAcct;
             std::cin >> toAcct;
+
+
+            while(std::cin.fail()) {
+                std::cout << "Please Enter a Number Only: " << std::endl;
+                std::cin.clear();
+                std::cin.ignore(256,'\n');
+                std::cin >> toAcct;
+            }
+
+            //check if any of the accounts are closed
+            if (std::stod(getCheqBal(user)) == 0 || std::stod(getSavBal(user)) == 0) {
+                std::cout << "Cannot transfer to/from a Closed Account, contact your bank manager to open!" << std::endl;
+                checkRecording(getClientName(user) +  " tried to transfer to/from a Closed account.");
+                return 0;
+            }
+            //check if they are transferring into the same account
+            if (fromAcct == toAcct) {
+                std::cout << "Cannot transfer from and to the same account, returning to the main menu." << std::endl;
+                checkRecording(getClientName(user) +  " tried to transfer to and from the same account.");
+                normalUser(user, 0);
+            }
