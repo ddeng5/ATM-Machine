@@ -798,3 +798,24 @@ int normalUser(std::string user, int accountUserRole) {
                 normalUser(user, 0);
             }
         }
+
+        //transfer between accounts function
+        else if (task == 2) {
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+            std::cout << "" << std::endl;
+
+            std::cout << "Which account would you like to transfer from?" << std::endl;
+            std::cout << "0. Chequings Account" << std::endl;
+            std::cout << "1. Savings Account" << std::endl;
+            std::cout << "Press Any Other Number to Go Back" << std::endl;
+
+            int fromAcct;
+            std::cin >> fromAcct;
+
+            while(std::cin.fail()) {
+                std::cout << "Please Enter a Number Only: " << std::endl;
+                std::cin.clear();
+                std::cin.ignore(256,'\n');
+                std::cin >> fromAcct;
+            }
