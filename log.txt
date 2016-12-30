@@ -1,0 +1,5 @@
+
+24-10-2016 23:33:37	Melissa-Engineer logged in.
+24-10-2016 23:33:40	The execution trace has been turned off!
+24-10-2016 23:34:01	John-Dilks logged in.
+24-10-2016 23:34:19	John-Dilks withdrew 20 from chequings account with extra charge.
