@@ -849,3 +849,47 @@ int normalUser(std::string user, int accountUserRole) {
                 checkRecording(getClientName(user) +  " tried to transfer to and from the same account.");
                 normalUser(user, 0);
             }
+
+            std::cout << "How much would you like to transfer?" << std::endl;
+            double transferAmt;
+            std::cin >> transferAmt;
+
+            //transferring from chequings to savings
+            if (fromAcct == 0) {
+                if ((userCheqBal - transferAmt) < 0) {
+                    std::cout << "Insufficient Funds" << std::endl;
+                    checkRecording(getClientName(user) +  " tried to transfer transfer money from chequings to savings but failed due to insufficient funds.");
+                    return 0;
+                }
+                if ((userCheqBal - transferAmt) < 1000) {
+                    std::cout << "You will be charged $2 if you proceed with this action because your chequings account will be <$1000. Would you like to proceed?" << std::endl;
+                    std::cout << "0. No" << std::endl;
+                    std::cout << "1. Yes" << std::endl;
+                    int pick;
+                    std::cin >> pick;
+
+                    //if the user doesn't agree to the charges then go back to the main menu
+                    if (pick == 0) {
+                        checkRecording(getClientName(user) +  " denied the extra charge when transferring from chequings into savings.");
+                        return 0;
+                    }
+                    else {
+                        userSavBal = userAcct.transferTo(userCheqBal, userSavBal, transferAmt);
+                        userCheqBal = userAcct.transferFrom(userCheqBal, userSavBal, transferAmt);
+                        userCheqBal = userCheqBal - 2;
+                        std::cout << "Transfer from Chequings Account to Savings Account Complete" << std::endl;
+                        checkRecording(getClientName(user) +  " accepted the extra charge and transferred money from chequings into savings.");
+                        rewriteFile();
+                        return 0;
+                    }
+                }
+                userSavBal = userAcct.transferTo(userCheqBal, userSavBal, transferAmt);
+                userCheqBal = userAcct.transferFrom(userCheqBal, userSavBal, transferAmt);
+                std::cout << "Transfer from Chequings Account to Savings Account Complete" << std::endl;
+                std::ostringstream strs;
+                strs << transferAmt;
+                std::string str = strs.str();
+                checkRecording(getClientName(user) +  " transferred " + str + "from chequings into savings.");
+                rewriteFile();
+                return 0;
+            }
