@@ -819,3 +819,12 @@ int normalUser(std::string user, int accountUserRole) {
                 std::cin.ignore(256,'\n');
                 std::cin >> fromAcct;
             }
+
+            //ask which account to transfer from
+            std::cout << "Which account would you like to transfer to?" << std::endl;
+            std::cout << "0. Chequings Account" << std::endl;
+            std::cout << "1. Savings Account" << std::endl;
+            std::cout << "Press Any Other Number to Go Back" << std::endl;
+
+            int toAcct;
+            std::cin >> toAcct;
