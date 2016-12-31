@@ -893,3 +893,23 @@ int normalUser(std::string user, int accountUserRole) {
                 rewriteFile();
                 return 0;
             }
+
+            //transferring from savings into chequings
+            else {
+                if ((userSavBal - transferAmt) < 0) {
+                    std::cout << "Insufficient Funds" << std::endl;
+                    checkRecording(getClientName(user) +  " tried to transfer money from savings into chequings but failed due to insufficient funds.");
+                    return 0;
+                }
+                userCheqBal = userAcct.transferTo(userSavBal, userCheqBal, transferAmt);
+                userSavBal = userAcct.transferFrom(userSavBal, userCheqBal, transferAmt);
+                std::cout << "Transfer from Savings Account to Chequings Account Complete" << std::endl;
+                std::ostringstream strs;
+                strs << transferAmt;
+                std::string str = strs.str();
+                checkRecording(getClientName(user) +  " transferred " + str + " from savings into chequings.");
+                rewriteFile();
+                return 0;
+            }
+        }
+        
