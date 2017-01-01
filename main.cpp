@@ -912,4 +912,16 @@ int normalUser(std::string user, int accountUserRole) {
                 return 0;
             }
         }
-        
+
+        //logout
+        else if (task == 3) {
+            std::cout << "Thank you for logging out. Have a good day!" << std::endl;
+            checkRecording(getClientName(user) +  " logged out.");
+            return 1;
+        }
+        //check for invalid entries
+        else {
+            std::cout << "Please Select a Valid Entry" << std::endl;
+            normalUser(user, 0);
+        }
+}
